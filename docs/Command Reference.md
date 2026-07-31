@@ -1,16 +1,10 @@
-Command Documentation
------------------------------
+#Command Documentation
 
-Command	| Description | Version Added
+**Command** - Version Introduced - *Description*<br>
 
-help	| display available commands | v0.1
-
-version	| display current application version |	v0.1
-
-history	| display full input history | v0.1
-
-clear	| clear cmd display	| v0.1
-
-echo	| display last user input |	v0.1-WIP
-
-exit	| safety shutdown application |	v0.1
+**help** - v0.1 - *Displays available commands.*<br> 
+**version** - v0.1 - *Displays application version.*<br>
+**history** - v0.1 - *Displays command history.*<br>
+**clear** - v0.1 - *Clears the console.*<br>
+**echo** - v0.1 - *Echos supplied arguments.*<br>
+**exit** - v0.1 - *Exits the application.*<br>
