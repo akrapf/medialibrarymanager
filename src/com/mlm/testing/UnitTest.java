@@ -10,6 +10,8 @@ import com.mlm.command.CommandParser;
  */
 public class UnitTest {
 	
+	//TODO refactor into object, call from console w/ args. Allow bypass from Main.
+	
 	/**
 	 * User-edited test queue.
 	 */

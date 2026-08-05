@@ -1,23 +1,25 @@
 package com.mlm.console;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.mlm.app.Config;
 import com.mlm.command.Command;
+import com.mlm.command.CommandExecutor;
 import com.mlm.command.CommandParser;
+import com.mlm.command.CommandResult;
 
 /**
  * Handles user input from the console and passes commands to the appropriate command handlers.
  * Commands should delegate operations to service classes.
  */
 public class Console {
-
+	
 	private final Scanner consoleInput;
 	private final CommandParser commandParser;
-
+	private final CommandExecutor commandExecutor;
+	
 	//Stores all user input as Strings.
 	private final List<String> commandHistory;
 	
@@ -29,6 +31,7 @@ public class Console {
 	public Console() {
 		consoleInput = new Scanner(System.in);
 		commandParser = new CommandParser();
+		commandExecutor = new CommandExecutor();
 		commandHistory = new ArrayList<>();
 	}
 	
@@ -49,7 +52,7 @@ public class Console {
 		while (running) {
 			System.out.print("> ");
 			
-			input = consoleInput.nextLine().trim(); //TODO convert to new Command object, adjust switch case
+			input = consoleInput.nextLine().trim();
 			
 			//Quietly ignores blank inputs rather than pass to command parser
 			if (input.isBlank()) {
@@ -61,61 +64,32 @@ public class Console {
 			//TODO separate into inputHistory (all) and executionHistory (valid commands, pass/fail)
 			commandHistory.add(input);
 			
-			Command command = commandParser.parseCommand(input); //parse input into Command object
+			Command parsedCommand = commandParser.parseCommand(input); //parse input into Command object
+
+			CommandResult result = commandExecutor.execute(parsedCommand);
 			
-			//TODO replace Switch with CommandExecutor object
-			switch (command.getName()) {
-			case "help":
-				help();
-				break;
-			case "version":
-				version();
-				break;
+			if (result.shouldShutdown()) {
+				running = false;
+			}
+			
+			//TODO finish replacing switch statement through CommandExecutor
+			//final command will move with HistoryService implementation in v0.2
+			//TODO replace switch default with command argument validation in CommandParser and Handlers
+			
+			switch (parsedCommand.getName()) {
 			case "history":
 				history();
-				break;
-			case "clear":
-				clear();
-				break;
-			case "echo":
-				echo(command);
-				break;
-			case "exit":
-				running = shutdown();
 				break;
 			default:
 				//TODO After command parsing, allow error returns on invalid portions
 				//eg "Unknown Command 'input'" or "Invalid Arguments for command 'input'"
-				//potential addition of expected input; eg "Invalid Arguments...expected [args]"
-				System.out.println("Unknown Command: " + command);
+				//expected input; eg "Invalid Arguments...expected [args]"
+				System.out.println("C Unknown Command: " + parsedCommand); //debug 'c'
 				System.out.println();
 			}
 		}
 		
 		consoleInput.close();
-	}
-	
-	/**
-	 * Outputs available commands to the console.
-	 */
-	private void help() {
-		System.out.println("Available Commands:");
-		System.out.printf(" %-12s %s%n", "help", "Display available commands.");
-		System.out.printf(" %-12s %s%n", "version", "Display application version.");
-		System.out.printf(" %-12s %s%n", "history", "Display command history.");
-		System.out.printf(" %-12s %s%n", "clear", "Clear the console.");
-		System.out.printf(" %-12s %s%n", "echo", "Echo supplied arguments.");
-		System.out.printf(" %-12s %s%n", "exit", "Exit the application.");
-		System.out.println();
-	}
-	
-	/**
-	 * Outputs the current application version as requested from the Configuration file.
-	 * @see com.mlm.app.Config
-	 */
-	private void version() {
-		System.out.println("Media Library Manager v" + Config.getVersion());
-		System.out.println();
 	}
 	
 	/**
@@ -131,40 +105,13 @@ public class Console {
 	}
 	
 	/**
-	 * Clears the console screen.
-	 * Currently only supported in Windows CMD.
+	 * Prints the console banner upon console startup.
 	 */
-	private void clear() {
-		try {
-			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Echos the user's input by displaying parsed command.
-	 * TODO implement proper echo() to output rawInput
-	 */
-	private void echo(Command command) {
-	    System.out.println(command);
-	    System.out.println();
-	}
-	
-	/**
-	 * Attempt safe shutdown of application.
-	 * Currently only returns false, will modify when adding shutdown tasks
-	 * @return false successful shutdown, set running var to false
-	 */
-	private boolean shutdown() {
-		System.out.println("Exiting...");
-		//Future program shutdown tasks here		
-		return false;
-	}
-	
 	private void printBanner() {
+		//TODO ascii banner, formatting, random welcome message
 		System.out.println("Media Library Manager v" + Config.getVersion());
-		System.out.println("Dev Commands: clear, echo, exit, help, history, version"); //DEBUG - all available commands
+		System.out.println("Dev Commands: dev [ut]"); //debug
+		System.out.println("CLI Commands: clear, echo, exit, help, history, version"); //debug
 		System.out.println();
 	}
 }
