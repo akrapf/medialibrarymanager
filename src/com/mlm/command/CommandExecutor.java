@@ -3,8 +3,13 @@ package com.mlm.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mlm.commands.*;
-import com.mlm.testing.UnitTest;
+import com.mlm.commands.ClearHandler;
+import com.mlm.commands.EchoHandler;
+import com.mlm.commands.ExitHandler;
+import com.mlm.commands.HelpHandler;
+import com.mlm.commands.HistoryHandler;
+import com.mlm.commands.VersionHandler;
+import com.mlm.testing.Tester;
 
 /**
  * Routes Commands to the correct command implementation.
@@ -29,7 +34,7 @@ public class CommandExecutor {
 		handlers.put("exit", new ExitHandler()); //TODO test in console
 		handlers.put("help", new HelpHandler());
 		//handlers.put("history", new HistoryCommand());
-		handlers.put("version", new VerisonHandler());
+		handlers.put("version", new VersionHandler());
 		//handles.put("unittest, new UnitTest()); //debug
 	}
 	

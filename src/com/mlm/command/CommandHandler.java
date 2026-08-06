@@ -13,11 +13,4 @@ public interface CommandHandler {
 	 * @see com.mlm.command.CommandResult
 	 */
 	CommandResult execute(Command command);
-	
-	/**
-	 * Executes the Command.
-	 * @param command the parsed Command
-	 * @depreciated
-	 */
-	//void execute(Command command);
 }

@@ -14,7 +14,7 @@ import com.mlm.command.CommandResult;
 public class ClearHandler implements CommandHandler {
 
 	//TODO rewrite javadoc header to focus on class implementation and general functions
-	//TODO BUG - running clear in Console can produce blocks of empty space after previous output
+	//TODO BUG - running clear in cmd can produce blocks of empty space after previous output
 	
 	/**
 	 * Clears the Windows cmd console.

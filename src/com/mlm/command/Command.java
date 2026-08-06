@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Command {
 
-	//TODO add String rawInput and update constructor
+	//TODO add String rawInput?
     private final String name;
     private final List<String> arguments;
 
