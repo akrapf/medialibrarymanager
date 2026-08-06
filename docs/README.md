@@ -11,5 +11,8 @@ Often have codec issues with media server on TVs, can't figure it out...<br>
 Trying to build a one-stop management tool for personal use. Programming for fun and educational value.<br>
 Not intending for published use, just tracking on GitHub. Read the disclaimer above.<br>
 
-Roadmap: [docs/Roadmap.md](docs/Roadmap.md)<br>
-CLI Command Reference: [docs/Command Reference.md](docs/Command Reference.md)<br>
+### Documentation
+
+- [Roadmap](Roadmap.md)<br>
+- [Changelog](Changelog.md)<br>
+- [CLI Command Reference](Command Reference.md)<br>
