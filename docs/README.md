@@ -15,4 +15,4 @@ Not intending for published use, just tracking on GitHub. Read the disclaimer ab
 
 - [Roadmap](Roadmap.md)<br>
 - [Changelog](Changelog.md)<br>
-- [CLI Command Reference](Command Reference.md)<br>
+- [CLI Command Reference](CommandReference.md)<br>
