@@ -1,7 +1,5 @@
 package com.mlm.console;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.mlm.app.Config;
@@ -9,6 +7,7 @@ import com.mlm.command.Command;
 import com.mlm.command.CommandExecutor;
 import com.mlm.command.CommandParser;
 import com.mlm.command.CommandResult;
+import com.mlm.services.HistoryService;
 
 /**
  * Handles user input from the console and passes commands to the appropriate command handlers.
@@ -20,19 +19,23 @@ public class Console {
 	private final CommandParser commandParser;
 	private final CommandExecutor commandExecutor;
 	
-	//Stores all user input as Strings.
-	private final List<String> commandHistory;
+	/**
+	 * Reference pointers to Main
+	 */
+	private final HistoryService historyService;
 	
 	/**
 	 * Self-contained Console object; allows for multiple Consoles to exist.
 	 * Holds individual input scanners, command parsers, and command histories.
 	 * In future may add security limitations to these objects.
+	 * @param historyService
 	 */
-	public Console() {
-		consoleInput = new Scanner(System.in);
-		commandParser = new CommandParser();
-		commandExecutor = new CommandExecutor();
-		commandHistory = new ArrayList<>();
+	public Console(HistoryService historyService) {
+		this.historyService = historyService;
+		
+		this.consoleInput = new Scanner(System.in);
+		this.commandParser = new CommandParser();		
+		this.commandExecutor  = new CommandExecutor(historyService);
 	}
 	
 	/**
@@ -61,47 +64,25 @@ public class Console {
 			
 			//Record all user input including invalid commands.
 			//Behaves as a terminal history rather than record of successful execution.
-			//TODO separate into inputHistory (all) and executionHistory (valid commands, pass/fail)
-			commandHistory.add(input);
+			historyService.recordInput(input);
 			
 			Command parsedCommand = commandParser.parseCommand(input); //parse input into Command object
 
+			//Record only registered commands.
+			//TODO move to after execution, output with commandresult
+			//TODO history object in list, contains Command, timestamp, results, etc
+			historyService.recordExecution(input);
+			
 			CommandResult result = commandExecutor.execute(parsedCommand);
 			
 			if (result.shouldShutdown()) {
 				running = false;
 			}
 			
-			//TODO finish replacing switch statement through CommandExecutor
-			//final command will move with HistoryService implementation in v0.2
-			//TODO replace switch default with command argument validation in CommandParser and Handlers
-			
-			switch (parsedCommand.getName()) {
-			case "history":
-				history();
-				break;
-			default:
-				//TODO After command parsing, allow error returns on invalid portions
-				//eg "Unknown Command 'input'" or "Invalid Arguments for command 'input'"
-				//expected input; eg "Invalid Arguments...expected [args]"
-				System.out.println("C Unknown Command: " + parsedCommand); //debug 'c'
-				System.out.println();
-			}
+			System.out.println();
 		}
 		
 		consoleInput.close();
-	}
-	
-	/**
-	 * Outputs the users input history.
-	 * TODO input and command execution history separated
-	 */
-	private void history() {
-		int number = 1;
-		for (String command : commandHistory) {
-			System.out.println(number++ + " " + command);
-		}
-		System.out.println();
 	}
 	
 	/**
@@ -110,7 +91,7 @@ public class Console {
 	private void printBanner() {
 		//TODO ascii banner, formatting, random welcome message
 		System.out.println("Media Library Manager v" + Config.getVersion());
-		System.out.println("Dev Commands: dev [ut]"); //debug
+		System.out.println("Dev Commands: dev []"); //debug
 		System.out.println("CLI Commands: clear, echo, exit, help, history, version"); //debug
 		System.out.println();
 	}

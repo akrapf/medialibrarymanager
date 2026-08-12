@@ -1,13 +1,47 @@
 package com.mlm.commands;
 
-/*
- * TODO Implement execution history and refactor command history into input history.
- * create first flag in arguments, method in history class 'history --executed' 'history --input'
- * update documentation
- */
+import com.mlm.command.Command;
+import com.mlm.command.CommandHandler;
+import com.mlm.command.CommandResult;
+import com.mlm.services.HistoryService;
 
+public class HistoryHandler implements CommandHandler {
+	//TODO javadoc
+	
+	/**
+	 * Reference pointer to Main
+	 */
+	private final HistoryService historyService;
+	
+	public HistoryHandler(HistoryService historyService) {
+		this.historyService = historyService;
+	}
+	
+	@Override
+	public CommandResult execute(Command command) {		
+		
+		//TODO implement argument/flag parsing 'history --executed' 'history --input' 'history [default]'
+		
+		printInputHistory();
 
-public class HistoryHandler {
-
-	//TODO
+		return CommandResult.success();
+	}
+	
+	//in handler - cli, not visible to gui through Service layer
+	public void printInputHistory() {
+		int number = 1;
+		for (String command : historyService.getInputHistory()) {
+			System.out.println(number++ + " " + command);
+		}
+		System.out.println(); //TODO may not be needed since Console returns a new line at the end of its loop
+	}
+	
+	//in handler - cli, not visible to gui through Service layer
+	public void printExecutionHistory() {
+		int number = 1;
+		for (String command : historyService.getExecutionHistory()) {
+			System.out.println(number++ + " " + command);
+		}
+		System.out.println(); //TODO may not be needed since Console returns a new line at the end of its loop
+	}
 }

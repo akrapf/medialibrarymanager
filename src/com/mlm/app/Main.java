@@ -1,24 +1,24 @@
 package com.mlm.app;
 
 import com.mlm.console.Console;
-import com.mlm.testing.Tester;
+import com.mlm.services.HistoryService;
 
 public class Main {
 	
-	/**
-	 * Flag for testing mode. Application exits after queue completion. Manual edit only.
-	 * Bypasses Console for unit test execution for Console debugging.
-	 * Normal execution through Console `dev [args]`
-	 * TODO remove when dev command implemented
-	 */
-	private static final boolean UNIT_TEST_FLAG = false; //debug
-	
 	public static void main(String[] args) {
-		if (UNIT_TEST_FLAG) {
-			Tester.runQueue();
-		} else {
-			Console console = new Console();
-			console.start();
-		}
+		
+		//TODO iterate through List<> of all Services to init and pass List<> to Console
+		//TODO future try/catch for Service startup
+		//if Service init fails, block commands/GUI actions related to that service
+		//display verbose error (HistoryService failed startup...); logging
+		
+		/**
+		 * Services created in Main, passed to Console constructor.
+		 * Must be reachable by both CLI and GUI.
+		 */
+		HistoryService historyService = new HistoryService();
+
+		Console console = new Console(historyService);
+		console.start();
 	}
 }

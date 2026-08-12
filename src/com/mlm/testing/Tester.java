@@ -2,36 +2,56 @@ package com.mlm.testing;
 
 import java.util.Arrays;
 
+import com.mlm.command.Command;
+import com.mlm.command.CommandHandler;
 import com.mlm.command.CommandParser;
+import com.mlm.command.CommandResult;
 
 /**
  * Developer testing workspace.
  * Test logic in methods and executed through Queue.
+ * Operates similar to Handler classes, contained independently in Tester object.
  */
-public class Tester {
-	
-	//TODO refactor into object, call from console w/ args. Allow bypass from Main.
+public class Tester implements CommandHandler {
 	
 	/**
-	 * User-edited test queue.
+	 * Executes the manually created queue().
+	 * Will eventually parse arguments to specify specific test methods.
 	 */
-	private static void queue() {
+	@Override
+	public CommandResult execute(Command command) {
+
+		try {
+			executeQueue();
+		} catch (Exception e) {
+			System.out.println("ERROR > TESTING QUEUE EXECUTION");
+			e.printStackTrace();
+			return CommandResult.failure();
+		}
 		
-		commandParserTest();
+		return CommandResult.success();
 	}
 	
 	/**
 	 * Executes user-generated queue for unit tests.
-	 * Requires manual adjustment to test flag and executes from Main.
 	 */
-	public static void runQueue() {
-		System.out.println("EXECUTING UNIT TESTS");
+	public void executeQueue() {
+		System.out.println("EXECUTING MANUAL TEST QUEUE");
 		System.out.println();
 		
 		queue();
 		
 		System.out.println();
-		System.out.println("UNIT TEST QUEUE COMPLETED");
+		System.out.println("MANUAL TEST QUEUE COMPLETED");
+	}
+
+	/**
+	 * Manually user-edited test queue.
+	 * May eventually allow CLI queuing.
+	 */
+	private static void queue() {
+		
+		commandParserTest();
 	}
 	
 	/**
@@ -41,7 +61,7 @@ public class Tester {
 	private static void commandParserTest() {
 		CommandParser cmdparser = new CommandParser();		
 		
-		String[] commandParseList = {"", " ", "help", "version", "Hello World", "command arg1 arg2 arg3", "scan help", "scan library Movies", "scan D:\\media\\movies", "scam D\\TV Shows\\", " lead and trail whtspc    "};
+		String[] commandParseList = {"", " ", "help", "version", "Hello World", "command arg1 arg2 arg3", "help scan", "scan library Movies", "scan D:\\media\\movies", "scam D\\TV Shows\\", " lead and trail whtspc    "};
 		
 		System.out.println("Testing CommandParser...");
 		

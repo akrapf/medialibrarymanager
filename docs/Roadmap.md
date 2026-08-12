@@ -10,24 +10,37 @@ General outline of intended progress. Likely badly contextualized.
 - [x] Command execution<br>
 - [x] Individual command classes<br>
 
-### v0.1.1 - Improvements to command parsing.
-- [ ] Arguments and Flags<br>
-- [ ] Quoted arguments<br>
-- [ ] Improvements to help command<br>
-- [ ] Verbose command errors<br>
-
 ## v0.2 - Core Application Architecture
 
-### v0.2 - Service Layer
-- [ ] Service layer interfacing<br>
+### v0.2 - Service Layer Introduction
+- [x] Service layer interfacing<br>
+- [ ] Modify all Commands to Service layer interface<br>
+	- [ ] HelpService<br>
+	- [ ] HistoryService<br>
+	- [ ] "ConsoleService" & etc<br>
 
-### v0.2.1 - File System Interaction
+### v0.2.1 - Improvements to command parsing
+- [ ] Arguments and Flags<br>
+	- [ ] Reusable argument utilities<br>
+	- [ ] Improve argument validation<br>
+	- [ ] Quoted arguments<br>
+- [ ] First arg implementation through History
+
+### v0.2.2 - Command system improvements
+- [ ] Dynamically register commands<br>
+- [ ] Improvements to Help command<br>
+	- [ ] Automatic help generation<br>
+- [ ] Verbose error formatting<br>
+	- [ ] CommandResult expansion<br>
+	- [ ] OutputHelper class<br>
+
+### v0.2.3 - File System Interaction
 - [ ] FileSystem service<br>
 - [ ] Directory scanning<br>
 - [ ] Basic metadata collection<br>
 - [ ] Handle unsupported/inaccessible files<br>
 
-### v0.2.2 - Library Scanning
+### v0.2.4 - Library Scanning
 - [ ] MediaItem data models<br>
 - [ ] Scan service <br>
 - [ ] Discover Media files<br>
@@ -35,7 +48,7 @@ General outline of intended progress. Likely badly contextualized.
 - [ ] Display scan results<br>
 - [ ] Track scan progress<br>
 
-### v0.2.3 - Query Media
+### v0.2.5 - Query Media
 - [ ] Query command<br>
 - [ ] Display file metadata<br>
 

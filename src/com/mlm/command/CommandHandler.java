@@ -5,6 +5,10 @@ package com.mlm.command;
  * @see com.mlm.commands
  */
 public interface CommandHandler {
+	
+	//TODO After command parsing, allow error returns on invalid portions
+	//eg "Unknown Command 'input'" or "Invalid Arguments for command 'input'"
+	//expected input; eg "Invalid Arguments...expected [args]"
 
 	/**
 	 * Executes the Command and returns a CommandResult.

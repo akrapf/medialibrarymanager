@@ -9,6 +9,7 @@ import com.mlm.commands.ExitHandler;
 import com.mlm.commands.HelpHandler;
 import com.mlm.commands.HistoryHandler;
 import com.mlm.commands.VersionHandler;
+import com.mlm.services.HistoryService;
 import com.mlm.testing.Tester;
 
 /**
@@ -24,8 +25,9 @@ public class CommandExecutor {
 	 * Constructor for the executor; creates HashMap registry of all commands.
 	 * @see com.mlm.command.CommandHandler
 	 */
-	public CommandExecutor() {
-		handlers = new HashMap<>();
+	public CommandExecutor(HistoryService historyService) {
+		
+		this.handlers = new HashMap<>();
 		
 		//Add top level commadnds to the handlers HashMap
 		//TODO automate addition
@@ -33,9 +35,9 @@ public class CommandExecutor {
 		handlers.put("echo", new EchoHandler());
 		handlers.put("exit", new ExitHandler()); //TODO test in console
 		handlers.put("help", new HelpHandler());
-		//handlers.put("history", new HistoryCommand());
+		handlers.put("history", new HistoryHandler(historyService));
 		handlers.put("version", new VersionHandler());
-		//handles.put("unittest, new UnitTest()); //debug
+		handlers.put("dev", new Tester()); //DEBUG
 	}
 	
 	/**
@@ -49,7 +51,7 @@ public class CommandExecutor {
 		CommandHandler handler = handlers.get(command.getName());
 		
 		if (handler == null) {
-			System.out.println("CE Unknown Command: " + command.getName()); //debug 'ce'
+			System.out.println("Unknown Command: " + command.getName());
 			return CommandResult.failure();
 		}
 		
