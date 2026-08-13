@@ -18,13 +18,15 @@ General outline of intended progress. Likely badly contextualized.
 	- [ ] HelpService<br>
 	- [ ] HistoryService<br>
 	- [ ] "ConsoleService" & etc<br>
+- [ ] Testing platform additions<br>
 
 ### v0.2.1 - Improvements to command parsing
 - [ ] Arguments and Flags<br>
 	- [ ] Reusable argument utilities<br>
 	- [ ] Improve argument validation<br>
 	- [ ] Quoted arguments<br>
-- [ ] First arg implementation through History
+- [ ] First arg implementation through History<br>
+- [ ] Testing platform additions<br>
 
 ### v0.2.2 - Command system improvements
 - [ ] Dynamically register commands<br>
@@ -33,12 +35,14 @@ General outline of intended progress. Likely badly contextualized.
 - [ ] Verbose error formatting<br>
 	- [ ] CommandResult expansion<br>
 	- [ ] OutputHelper class<br>
+- [ ] Testing platform additions<br>
 
 ### v0.2.3 - File System Interaction
 - [ ] FileSystem service<br>
 - [ ] Directory scanning<br>
 - [ ] Basic metadata collection<br>
 - [ ] Handle unsupported/inaccessible files<br>
+- [ ] Testing platform additions<br>
 
 ### v0.2.4 - Library Scanning
 - [ ] MediaItem data models<br>
@@ -47,10 +51,12 @@ General outline of intended progress. Likely badly contextualized.
 - [ ] Convert Media files to Media objects<br>
 - [ ] Display scan results<br>
 - [ ] Track scan progress<br>
+- [ ] Testing platform additions<br>
 
 ### v0.2.5 - Query Media
 - [ ] Query command<br>
 - [ ] Display file metadata<br>
+- [ ] Testing platform additions<br>
 
 ## v0.3 - Library Storage and Management
 
@@ -58,6 +64,7 @@ General outline of intended progress. Likely badly contextualized.
 - [ ] Explore database options<br>
 - [ ] Design library schema<br>
 - [ ] Save/load functionality
+- [ ] Testing platform additions<br>
 
 ### v0.3.1 - to be determined...
 

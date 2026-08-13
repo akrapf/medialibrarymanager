@@ -3,10 +3,12 @@ Notes on updates, overall thoughts on each stage.<br>
 
 ## v0.2
 **DATE HERE**<br>
-Implemented Service layer, starting with HistoryService.<br>
+Implemented application Service layer, starting with HistoryService.<br>
 Separated input/execution history lists.<br>
+Added CommandExecutor and CommandHandler CLI architecture.<br>
 Implmented CommandResult for execution result return (currently only status).<br>
-Transitioned Console from Switch to full Executor/Service interaction.<br>
+Separated CLI command handling from application service layer<br>
+Removed command execution switch from Console via CommandExecutor.<br>
 Transitioned Testing flag to Tester object, functions as CLI command.<br>
 Updated documentation and formatting.<br>
 Updates to javadoc.<br>

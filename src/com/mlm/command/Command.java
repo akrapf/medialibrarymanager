@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Command {
 
-	//TODO add String rawInput?
+	//TODO add flags
     private final String name;
     private final List<String> arguments;
 

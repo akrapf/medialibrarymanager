@@ -6,7 +6,7 @@ package com.mlm.app;
  */
 public final class Config {
 
-	private static final String VERSION = "0.1.0";
+	private static final String VERSION = "0.2.0";
 	
 	private Config() {} //private constructor to prevent creation of Config object
 	

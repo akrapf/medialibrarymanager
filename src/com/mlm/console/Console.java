@@ -67,13 +67,13 @@ public class Console {
 			historyService.recordInput(input);
 			
 			Command parsedCommand = commandParser.parseCommand(input); //parse input into Command object
-
-			//Record only registered commands.
-			//TODO move to after execution, output with commandresult
-			//TODO history object in list, contains Command, timestamp, results, etc
-			historyService.recordExecution(input);
 			
 			CommandResult result = commandExecutor.execute(parsedCommand);
+			
+			//Record only executed commands.
+			//TODO output with commandresult
+			//TODO history object in list, contains Command, timestamp, results, etc
+			historyService.recordExecution(input);
 			
 			if (result.shouldShutdown()) {
 				running = false;

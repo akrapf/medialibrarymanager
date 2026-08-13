@@ -25,7 +25,8 @@ public class ClearHandler implements CommandHandler {
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return CommandResult.failure();
 		}
-		return CommandResult.success(); //TODO will return success even with error?
+		return CommandResult.success();
 	}
 }
