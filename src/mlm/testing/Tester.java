@@ -1,11 +1,11 @@
-package com.mlm.testing;
+package mlm.testing;
 
 import java.util.Arrays;
 
-import com.mlm.command.Command;
-import com.mlm.command.CommandHandler;
-import com.mlm.command.CommandParser;
-import com.mlm.command.CommandResult;
+import mlm.command.Command;
+import mlm.command.CommandHandler;
+import mlm.command.CommandParser;
+import mlm.command.CommandResult;
 
 /**
  * Developer testing workspace.
@@ -55,19 +55,32 @@ public class Tester implements CommandHandler {
 	}
 	
 	/**
-	 * Test Command Parser to observe output.
-	 * @see com.mlm.command.CommandParser
+	 * Tests CommandParser for input validation, output, argument/flag, quoted arguments.
 	 */
 	private static void commandParserTest() {
-		CommandParser cmdparser = new CommandParser();		
+		CommandParser cmdparser = new CommandParser();
 		
-		String[] commandParseList = {"", " ", "help", "version", "Hello World", "command arg1 arg2 arg3", "help scan", "scan library Movies", "scan D:\\media\\movies", "scam D\\TV Shows\\", " lead and trail whtspc    "};
+		String[] commandParseList = {"", " whitespace	tab", "history", "history input", "history --execution", "scan Movies",
+				"scan \"D:\\Media Library\\Movies\"", "scan Movies --recursive", "scan --recursive Movies", "report --format html Movies --type mp4"};
 		
-		System.out.println("Testing CommandParser...");
+		String[] invalidParseList = {"", "--recursive", "scan --", "scan --type", "scan --type --recursive"};
 		
+		System.out.println("Testing argument/flag parsing...");
 		System.out.println("Testing List: " + Arrays.toString(commandParseList));
 		
 		for (String input : commandParseList) {
+		    System.out.println("Parsing Command: '" + input + "'");
+		    try {
+		        System.out.println("Generated Command: " + cmdparser.parseCommand(input));
+		    } catch (IllegalArgumentException e) {
+		        System.out.println("Parser Exception: " + e.getMessage());
+		    }
+		    System.out.println();
+		}
+		
+		System.out.println("Testing invalid argument/flag parsing...");
+		
+		for (String input : invalidParseList) {
 		    System.out.println("Parsing Command: '" + input + "'");
 		    try {
 		        System.out.println("Generated Command: " + cmdparser.parseCommand(input));

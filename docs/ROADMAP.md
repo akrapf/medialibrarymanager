@@ -14,34 +14,34 @@ General outline of intended progress. Likely badly contextualized.
 
 ### v0.2 - Service Layer Introduction
 - [x] Service layer interfacing<br>
-- [ ] Modify all Commands to Service layer interface<br>
-	- [ ] HelpService<br>
-	- [ ] HistoryService<br>
-	- [ ] "ConsoleService" & etc<br>
-- [ ] Testing platform additions<br>
 
 ### v0.2.1 - Improvements to command parsing
-- [ ] Arguments and Flags<br>
-	- [ ] Reusable argument utilities<br>
-	- [ ] Improve argument validation<br>
-	- [ ] Quoted arguments<br>
-- [ ] First arg implementation through History<br>
-- [ ] Testing platform additions<br>
+- [x] Arguments and Flags<br>
+	- [x] Syntax validation<br>
+	- [x] Quoted arguments<br>
+	- [x] Exception handling<br>
 
 ### v0.2.2 - Command system improvements
-- [ ] Dynamically register commands<br>
-- [ ] Improvements to Help command<br>
-	- [ ] Automatic help generation<br>
+- [ ] CommandRegistry<br>
+	- [ ] Scalable command definitions<br>
+	- [ ] User-configurable command definitions (json)<br>
+	- [ ] Programmatic command registration<br>
+- [ ] Generate Help from registry<br>
 - [ ] Verbose error formatting<br>
-	- [ ] CommandResult expansion<br>
 	- [ ] OutputHelper class<br>
+- [ ] CommandResult expansion<br>
 - [ ] Testing platform additions<br>
+- [ ] Documentation improvements<br>
+- [ ] Javadoc improvements<br>
 
 ### v0.2.3 - File System Interaction
 - [ ] FileSystem service<br>
+- [ ] File path validation<br>
+	- [ ] Command sanitization?<br>
 - [ ] Directory scanning<br>
 - [ ] Basic metadata collection<br>
 - [ ] Handle unsupported/inaccessible files<br>
+- [ ] Logging?
 - [ ] Testing platform additions<br>
 
 ### v0.2.4 - Library Scanning
@@ -70,8 +70,7 @@ General outline of intended progress. Likely badly contextualized.
 
 ## Future Plans
 - Command validation, error returns (handler vs service?)<br>
-- File-path validation<br>
-- ConsoleOutput helper class
+- improvements to command parsing (shortcuts, etc)
 Reports - generate reports on libraries (extend to file tree size views)<br>
 Metadata - scan files for metadata (codecs, file types, etc) - to be used w/ compatibility<br>
 Compatibility - verify compatibility with 3rd party apps (jellyfin, plex, tvs, etc - custom presets)<br>

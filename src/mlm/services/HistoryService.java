@@ -1,4 +1,4 @@
-package com.mlm.services;
+package mlm.services;
 
 import java.util.ArrayList;
 import java.util.List;

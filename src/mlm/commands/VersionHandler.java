@@ -1,9 +1,9 @@
-package com.mlm.commands;
+package mlm.commands;
 
-import com.mlm.app.Config;
-import com.mlm.command.Command;
-import com.mlm.command.CommandHandler;
-import com.mlm.command.CommandResult;
+import mlm.app.Config;
+import mlm.command.Command;
+import mlm.command.CommandHandler;
+import mlm.command.CommandResult;
 
 /**
  * Requests the current application version.
@@ -15,7 +15,7 @@ public class VersionHandler implements CommandHandler {
 	
 	/**
 	 * Outputs the current application version as requested from the Configuration file.
-	 * @see com.mlm.app.Config
+	 * @see mlm.app.Config
 	 */
 	@Override
 	public CommandResult execute(Command command) {

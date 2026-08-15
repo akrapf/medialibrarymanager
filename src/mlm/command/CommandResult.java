@@ -1,4 +1,4 @@
-package com.mlm.command;
+package mlm.command;
 
 /**
  * Return object for Command execution statuses.

@@ -2,7 +2,7 @@
 
 **TL;DR**<br>
 Bad name. Simple personal utils for media server file management slowly growing into a useful application.<br>
-Educational purposes only. Owner disclaims all adverse effects and humbly accepts recognition for positive ones. Use at your own risk.
+Educational purposes only. Owner disclaims all adverse effects and humbly accepts recognition for positive ones. Use at your own risk.<br>
 
 Designing a media file management tool with command line focus with eventual growth into a GUI.<br>
 Many separate apps used to analyze and transform media files for use with Plex/Jellyfin primarily<br>

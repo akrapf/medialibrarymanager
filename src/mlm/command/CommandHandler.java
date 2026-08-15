@@ -1,8 +1,8 @@
-package com.mlm.command;
+package mlm.command;
 
 /**
  * Interface for Command classes.
- * @see com.mlm.commands
+ * @see mlm.commands
  */
 public interface CommandHandler {
 	
@@ -14,7 +14,7 @@ public interface CommandHandler {
 	 * Executes the Command and returns a CommandResult.
 	 * @param command the parsed Command
 	 * @return a CommandResult object
-	 * @see com.mlm.command.CommandResult
+	 * @see mlm.command.CommandResult
 	 */
 	CommandResult execute(Command command);
 }

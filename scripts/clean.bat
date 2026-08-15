@@ -3,6 +3,8 @@
 echo Cleaning MLM...
 echo.
 
+cd /d "%~dp0.."
+
 if exist bin (
 	rmdir /s /q bin
 	echo Build files removed.

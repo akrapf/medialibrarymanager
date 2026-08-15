@@ -1,10 +1,10 @@
-package com.mlm.commands;
+package mlm.commands;
 
 import java.io.IOException;
 
-import com.mlm.command.Command;
-import com.mlm.command.CommandHandler;
-import com.mlm.command.CommandResult;
+import mlm.command.Command;
+import mlm.command.CommandHandler;
+import mlm.command.CommandResult;
 
 /**
  * Clears the console.
@@ -24,7 +24,6 @@ public class ClearHandler implements CommandHandler {
 		try {
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start();
 		} catch (IOException e) {
-			e.printStackTrace();
 			return CommandResult.failure();
 		}
 		return CommandResult.success();

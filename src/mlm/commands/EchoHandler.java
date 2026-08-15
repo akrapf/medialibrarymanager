@@ -1,8 +1,8 @@
-package com.mlm.commands;
+package mlm.commands;
 
-import com.mlm.command.Command;
-import com.mlm.command.CommandHandler;
-import com.mlm.command.CommandResult;
+import mlm.command.Command;
+import mlm.command.CommandHandler;
+import mlm.command.CommandResult;
 
 /**
  * Echos the user's input.

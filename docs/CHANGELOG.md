@@ -1,8 +1,18 @@
 # MLM ChangeLog
 Notes on updates, overall thoughts on each stage.<br>
 
+## v0.2.1
+**8/15/26**<br>
+Implented argument and flag parsing with basic syntax validation.<br>
+Refactored packages and project organization. Updated roadmap.<br>
+*parser iterates through tokenized input to identify command pieces*<br>
+*parser only performs validation on input. validation and error handling occur only at relevant layers*<br>
+*parser presumes literal user intent via grammatical syntax*<br>
+*eg. "---flag=value" {-flag,value} or "--flag==value" {flag,=value} presumes intended command*<br>
+*future plans of providing shortcuts to syntax (help/?, --,-)*<br>
+
 ## v0.2
-**DATE HERE**<br>
+**8/12/26**<br>
 Implemented application Service layer, starting with HistoryService.<br>
 Separated input/execution history lists.<br>
 Added CommandExecutor and CommandHandler CLI architecture.<br>
@@ -12,7 +22,7 @@ Removed command execution switch from Console via CommandExecutor.<br>
 Transitioned Testing flag to Tester object, functions as CLI command.<br>
 Updated documentation and formatting.<br>
 Updates to javadoc.<br>
-*Services -> Console -> Executor(Service) as required*
+*Services -> Console -> Executor(Service) as required (Console posts own history)*
 *Command -> Parser -> Executor -> Handler -> Service <- GUI*<br>
 *Services visible to GUI & CLI (Console). Handlers and Command related objects exclusive to CLI.*<br>
 *Services own and serve data. Executor/Handlers process for CLI*<br>

@@ -1,16 +1,16 @@
-package com.mlm.command;
+package mlm.command;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mlm.commands.ClearHandler;
-import com.mlm.commands.EchoHandler;
-import com.mlm.commands.ExitHandler;
-import com.mlm.commands.HelpHandler;
-import com.mlm.commands.HistoryHandler;
-import com.mlm.commands.VersionHandler;
-import com.mlm.services.HistoryService;
-import com.mlm.testing.Tester;
+import mlm.commands.ClearHandler;
+import mlm.commands.EchoHandler;
+import mlm.commands.ExitHandler;
+import mlm.commands.HelpHandler;
+import mlm.commands.HistoryHandler;
+import mlm.commands.VersionHandler;
+import mlm.services.HistoryService;
+import mlm.testing.Tester;
 
 /**
  * Routes Commands to the correct command implementation.
@@ -23,7 +23,7 @@ public class CommandExecutor {
 	
 	/**
 	 * Constructor for the executor; creates HashMap registry of all commands.
-	 * @see com.mlm.command.CommandHandler
+	 * @see mlm.command.CommandHandler
 	 */
 	public CommandExecutor(HistoryService historyService) {
 		
@@ -44,8 +44,8 @@ public class CommandExecutor {
 	 * Find the command in the HasMap registry and send to it's handler.
 	 * @param command the parsed Command to be executed
 	 * @return CommandResult status
-	 * @see com.mlm.command.Command
-	 * @see com.mlm.command.CommandResult
+	 * @see mlm.command.Command
+	 * @see mlm.command.CommandResult
 	 */
 	public CommandResult execute(Command command) {
 		CommandHandler handler = handlers.get(command.getName());

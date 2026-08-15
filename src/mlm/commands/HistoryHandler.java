@@ -1,9 +1,9 @@
-package com.mlm.commands;
+package mlm.commands;
 
-import com.mlm.command.Command;
-import com.mlm.command.CommandHandler;
-import com.mlm.command.CommandResult;
-import com.mlm.services.HistoryService;
+import mlm.command.Command;
+import mlm.command.CommandHandler;
+import mlm.command.CommandResult;
+import mlm.services.HistoryService;
 
 public class HistoryHandler implements CommandHandler {
 	//TODO javadoc

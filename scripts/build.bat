@@ -3,9 +3,11 @@
 echo Building MLM...
 echo.
 
+cd /d "%~dp0.."
+
 if not exist bin mkdir bin
 
-javac -d bin -sourcepath src src\com\mlm\app\Main.java
+javac -d bin -sourcepath src src\mlm\app\Main.java
 
 if %errorlevel% neq 0 (
     echo.

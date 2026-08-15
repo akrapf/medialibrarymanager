@@ -1,6 +1,8 @@
 @echo off
 
-java -cp bin com.mlm.app.Main
+cd /d "%~dp0.."
+
+java -cp bin mlm.app.Main
 
 if %errorlevel% neq 0 (
     echo.

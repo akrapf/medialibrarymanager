@@ -1,13 +1,13 @@
-package com.mlm.console;
+package mlm.console;
 
 import java.util.Scanner;
 
-import com.mlm.app.Config;
-import com.mlm.command.Command;
-import com.mlm.command.CommandExecutor;
-import com.mlm.command.CommandParser;
-import com.mlm.command.CommandResult;
-import com.mlm.services.HistoryService;
+import mlm.app.Config;
+import mlm.command.Command;
+import mlm.command.CommandExecutor;
+import mlm.command.CommandParser;
+import mlm.command.CommandResult;
+import mlm.services.HistoryService;
 
 /**
  * Handles user input from the console and passes commands to the appropriate command handlers.
@@ -42,9 +42,9 @@ public class Console {
 	 * Starts the console and requests user input.
 	 * User input is parsed and returned as a Command object,
 	 * then passed through the Executor to perform the Command.
-	 * @see com.mlm.command.Command
-	 * @see com.mlm.command.CommandParser
-	 * @see com.mlm.command.CommandExecutor
+	 * @see mlm.command.Command
+	 * @see mlm.command.CommandParser
+	 * @see mlm.command.CommandExecutor
 	 */
 	public void start() {
 		String input = "";
@@ -66,7 +66,15 @@ public class Console {
 			//Behaves as a terminal history rather than record of successful execution.
 			historyService.recordInput(input);
 			
-			Command parsedCommand = commandParser.parseCommand(input); //parse input into Command object
+			Command parsedCommand;
+			
+			try {
+				parsedCommand = commandParser.parseCommand(input);
+			} catch (IllegalArgumentException e) {
+				System.out.println("Invalid command: " + e.getMessage());
+				System.out.println();
+				continue;
+			}
 			
 			CommandResult result = commandExecutor.execute(parsedCommand);
 			
